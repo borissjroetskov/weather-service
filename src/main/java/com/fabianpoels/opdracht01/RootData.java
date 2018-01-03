@@ -2,6 +2,7 @@ package com.fabianpoels.opdracht01;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RootData {
 
@@ -15,13 +16,7 @@ public class RootData {
 		if (city.equalsIgnoreCase("")) {
 			return this.weatherReports;
 		} else {
-			List<WeatherReport> result = new ArrayList<>();
-			for (WeatherReport wr : this.weatherReports) {
-				if (wr.getCity().equalsIgnoreCase(city)) {
-					result.add(wr);
-				}
-			}
-			return result;
+			return this.weatherReports.stream().filter(wr -> wr.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
 		}
 	}
 
@@ -29,14 +24,7 @@ public class RootData {
 		if (weatherReports.size() == 0) {
 			weatherReports.add(wr);
 		} else {
-			boolean hasDuplicate = false;
-			for (WeatherReport x : weatherReports) {
-				if (x.equals(wr)) {
-					hasDuplicate = true;
-					break;
-				}
-			}
-			if (!hasDuplicate) {
+			if (!weatherReports.contains(wr)) {
 				weatherReports.add(wr);
 			}
 		}
@@ -44,5 +32,9 @@ public class RootData {
 
 	public WeatherReport getWeatherReportById(long id) {
 		return weatherReports.stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+	}
+
+	public AverageTemperature getAverageTemperature(String city) {
+		return new AverageTemperature(getWeatherReportsByCity(city));
 	}
 }
