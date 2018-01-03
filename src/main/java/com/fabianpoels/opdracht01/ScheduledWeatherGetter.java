@@ -10,7 +10,7 @@ public class ScheduledWeatherGetter {
 	private static String apiUrlPart1 = "http://api.openweathermap.org/data/2.5/weather?q=";
 	private static String apiUrlPart2 = "&units=metric&appid=434736d2c8c9aea323f3cc8ea0d1c037";
 
-	/*@Scheduled(cron="0 * * * * *" )
+	@Scheduled(cron="0 * * * * *" )
 	public void getCurrentWeatherLeuven() {
 		getWeatherAndAddToMemoryDb("Leuven,be");
 	}
@@ -28,7 +28,7 @@ public class ScheduledWeatherGetter {
 	@Scheduled(cron="0 * * * * *" )
 	public void getCurrentWeatherBrussel() {
     	getWeatherAndAddToMemoryDb("Brussels,be");
-	}*/
+	}
 	
 	private void getWeatherAndAddToMemoryDb(String city) {
     	RestTemplate restTemplate = new RestTemplate();
