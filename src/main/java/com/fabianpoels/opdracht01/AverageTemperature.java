@@ -1,29 +1,26 @@
 package com.fabianpoels.opdracht01;
 
 import java.util.List;
-import java.util.stream.DoubleStream;
-import java.util.stream.LongStream;
+import java.util.stream.Collectors;
 
 public class AverageTemperature {
 
 	private Long startUnixtime;
 	private Long endUnixtime;
 	private Long measurements;
-	private String city;
+	private List<String> cities;
 	private double temp;
 	
 	public AverageTemperature() {
 		
 	}
 	
-	public AverageTemperature(List<WeatherReport> weatherReportsByCity) {
-		weatherReportsByCity.stream().map(mapper)
-		LongStream ls = weatherReportsByCity.stream().mapToLong(WeatherReport::getTime);
-		setStartUnixtime(ls.min().getAsLong());
-		setEndUnixtime(ls.max().getAsLong());
-		DoubleStream ds = weatherReportsByCity.stream().mapToDouble(WeatherReport::getTemp);
-		setMeasurements(ds.count());
-		setTemp(ds.sum() / getMeasurements());
+	public AverageTemperature(List<WeatherReport> weatherReports) {
+		cities = weatherReports.stream().map(x -> x.getCity()).distinct().collect(Collectors.toList());
+		setStartUnixtime(weatherReports.stream().mapToLong(WeatherReport::getTime).min().getAsLong());
+		setEndUnixtime(weatherReports.stream().mapToLong(WeatherReport::getTime).max().getAsLong());
+		setMeasurements(weatherReports.stream().mapToDouble(WeatherReport::getTemp).count());
+		setTemp(weatherReports.stream().mapToDouble(WeatherReport::getTemp).sum() / getMeasurements());
 	}
 
 	public Long getStartUnixtime() {
@@ -49,12 +46,12 @@ public class AverageTemperature {
 		this.measurements = measurements;
 	}
 
-	public String getCity() {
-		return city;
+	public List<String> getCities() {
+		return cities;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCities(List<String> cities) {
+		this.cities = cities;
 	}
 
 	public double getTemp() {

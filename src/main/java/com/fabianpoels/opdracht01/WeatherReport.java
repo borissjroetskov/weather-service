@@ -92,9 +92,4 @@ public class WeatherReport {
 	public String toString() {
 		return "The temperature in " + city + " on " + getLocalTimeAsString() + " : " + getTemp() + "°C (humidity: " + getHumidity() + "%)";
 	}
-	
-	public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
-		Map<Object, Boolean> map = new ConcurrentHashMap<>();
-		return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
-	}
 }
