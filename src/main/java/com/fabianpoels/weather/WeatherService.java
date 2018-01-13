@@ -2,13 +2,15 @@ package com.fabianpoels.weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class Opdracht01Application {
+@EnableDiscoveryClient
+public class WeatherService {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Opdracht01Application.class, args);
+		SpringApplication.run(WeatherService.class, args);
 	}
 }
