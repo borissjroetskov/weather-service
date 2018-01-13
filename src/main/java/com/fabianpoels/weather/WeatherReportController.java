@@ -1,4 +1,4 @@
-package com.fabianpoels.opdracht01;
+package com.fabianpoels.weather;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class WeatherReportController {
 		return JetstreamDB.instance().root().getAverageTemperature(city);
 	}
 
-	@PostMapping("/add")
+	@PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> create(@RequestBody WeatherReport wr) {
 		JetstreamDB.instance().root().addWeatherReport(wr);

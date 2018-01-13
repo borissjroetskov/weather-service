@@ -1,4 +1,4 @@
-package com.fabianpoels.opdracht01;
+package com.fabianpoels.weather;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ public class RootData {
 				weatherReports.add(wr);
 			}
 		}
+		JetstreamDB.instance().storeRequired(weatherReports);
 	}
 
 	public WeatherReport getWeatherReportById(long id) {

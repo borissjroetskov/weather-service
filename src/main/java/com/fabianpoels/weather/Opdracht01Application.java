@@ -1,4 +1,4 @@
-package com.fabianpoels.opdracht01;
+package com.fabianpoels.weather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

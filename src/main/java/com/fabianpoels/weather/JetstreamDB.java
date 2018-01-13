@@ -1,4 +1,4 @@
-package com.fabianpoels.opdracht01;
+package com.fabianpoels.weather;
 
 import one.jetstream.JetstreamInstance;
 
@@ -22,6 +22,6 @@ public class JetstreamDB extends JetstreamInstance<RootData> {
  
     @Override
     protected String createStorageDirectoryName() {
-        return "opdracht01_storage";
+        return "weatherreport_storage";
     }
 }

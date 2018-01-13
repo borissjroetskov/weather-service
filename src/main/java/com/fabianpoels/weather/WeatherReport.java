@@ -1,4 +1,4 @@
-package com.fabianpoels.opdracht01;
+package com.fabianpoels.weather;
 
 
 
