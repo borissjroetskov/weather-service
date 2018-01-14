@@ -16,11 +16,13 @@ public class AverageTemperature {
 	}
 	
 	public AverageTemperature(List<WeatherReport> weatherReports) {
+		if (weatherReports.size() > 0) {
 		cities = weatherReports.stream().map(x -> x.getCity()).distinct().collect(Collectors.toList());
 		setStartUnixtime(weatherReports.stream().mapToLong(WeatherReport::getTime).min().getAsLong());
 		setEndUnixtime(weatherReports.stream().mapToLong(WeatherReport::getTime).max().getAsLong());
 		setMeasurements(weatherReports.stream().mapToDouble(WeatherReport::getTemp).count());
 		setTemp(weatherReports.stream().mapToDouble(WeatherReport::getTemp).sum() / getMeasurements());
+		}
 	}
 
 	public Long getStartUnixtime() {

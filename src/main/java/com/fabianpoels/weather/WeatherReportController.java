@@ -28,8 +28,8 @@ public class WeatherReportController {
 		return JetstreamDB.instance().root().getWeatherReportById(id);
 	}
 	
-	@GetMapping("/average")
-	public AverageTemperature show(@RequestParam(value="city", defaultValue="") String city) {
+	@GetMapping("/average/{city}")
+	public AverageTemperature show(@PathVariable String city) {
 		return JetstreamDB.instance().root().getAverageTemperature(city);
 	}
 
